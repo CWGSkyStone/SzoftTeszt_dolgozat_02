@@ -34,11 +34,30 @@ public class MainController {
     }
 
     void startCalc(){
+        String sideAString = aSideField.getText();
+        if(!checkInput(sideAString)){
+            throw new IllegalArgumentException("A bemeneti mező nem lehet üres, és csak számokat tartalmazhat!");};
+        
+        String sideBString = aSideField.getText();
+        if(!checkInput(sideBString)){
+            throw new IllegalArgumentException("A bemeneti mező nem lehet üres, és csak számokat tartalmazhat!");};
+
+        String sideCString = aSideField.getText();
+        if(!checkInput(sideCString)){
+            throw new IllegalArgumentException("A bemeneti mező nem lehet üres, és csak számokat tartalmazhat!");};
+
         double sideA = Double.parseDouble(aSideField.getText());
         double sideB = Double.parseDouble(bSideField.getText());
         double sideC = Double.parseDouble(cSideField.getText());
+        
         double volume = Ellipsoid.volumeCalc(sideA, sideB, sideC);
         volumeField.setText(String.valueOf(volume));
+    }
+
+    boolean checkInput(String input){
+        if(input.isEmpty()) 
+            return false;
+        return input.matches("^[0-9.]+$");
     }
 
 }
